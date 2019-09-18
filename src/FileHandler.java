@@ -1,7 +1,12 @@
+import java.awt.*;
+import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import static java.lang.Math.abs;
 
 public class FileHandler {
     protected Scanner sc;
@@ -20,7 +25,7 @@ public class FileHandler {
 
     int Nextint(){
         while(!sc.hasNextInt()){
-           if(sc.next() == "-")return sc.nextInt()+maxValue;
+           sc.next();
         }
         return sc.nextInt();
     }
@@ -35,6 +40,19 @@ public class FileHandler {
             }
         }while (lastInteger != endOfLine);
         return Clause;
+    }
+
+    ArrayList<Point> CreateListOfPointFromClause(ArrayList<Integer>[] ListOfClause) {
+        int x = 0;
+        int y = 0;
+        List<Point> ListOfPoints = new ArrayList<>();
+        for (int i = 0; i < ListOfClause.length; i++) {
+            x = (int) ListOfClause[i].get(0);
+            y = (int) ListOfClause[i].get(1);
+            ListOfPoints.add(new Point(-x, y));
+            ListOfPoints.add(new Point(-y, x));
+        }
+        return (ArrayList<Point>) ListOfPoints;
     }
 
 }
