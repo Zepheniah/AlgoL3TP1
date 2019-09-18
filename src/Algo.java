@@ -14,12 +14,12 @@ public class Algo {
         PointHandler.init();
         GraphHandler graph = new GraphHandler( new Graph(2*myscan.maxValue),false);
 
-        /*
+
         PointHandler.PrintListOfPoints();
         System.out.println("-----------------");
         PointHandler.PrintListOfTranspositionPoints();
         System.out.println("-----------------");
-        */
+
 
     }
 
