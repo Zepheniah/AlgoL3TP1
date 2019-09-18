@@ -17,6 +17,10 @@ public class PointHandler {
         this.x = x;
         this.y = y;
     }
+    public static void init(){
+        PointHandler.CreateListOfPointFromClause(FileHandler.ListofClauses);
+        PointHandler.CreateListOfTranspostionPoint(PointHandler.getListOfPoints());
+    }
 
      protected static PointHandler  permute(PointHandler point){
         int z,w;
@@ -46,5 +50,17 @@ public class PointHandler {
         }
         ListOfTranspositionPoints = (ArrayList<PointHandler>)((ArrayList<PointHandler>) TempListOfTranspositionPoints).clone();
         return ListOfTranspositionPoints;
+    }
+
+    public static void PrintListOfPoints(){
+        for(PointHandler point : ListOfPoints){
+            System.out.println("x= "+point.x+" y = "+point.y);
+        }
+    }
+
+    public static void PrintListOfTranspositionPoints(){
+        for(PointHandler point : ListOfTranspositionPoints){
+            System.out.println("x= "+point.x+" y = "+point.y);
+        }
     }
 }

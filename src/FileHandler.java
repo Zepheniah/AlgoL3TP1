@@ -11,16 +11,35 @@ import static java.lang.Math.abs;
 public class FileHandler {
     protected Scanner sc;
     protected static int endOfLine = 0;
-    public int maxValue;
+    protected static int nbClause;
+    protected static int maxValue;
+
+    protected static ArrayList<Integer>[] ListofClauses;
 
 
 
     public FileHandler(File fileName){
         try {
             sc = new Scanner(fileName);
+            maxValue = Nextint();
+            nbClause = Nextint();
+            ListofClauses = new ArrayList[nbClause];
+            ListOfClauses();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static int getNbClause() {
+        return nbClause;
+    }
+
+    public static int getMaxValue() {
+        return maxValue;
+    }
+
+    public static ArrayList<Integer>[] getListofClauses() {
+        return ListofClauses;
     }
 
     int Nextint(){
@@ -40,6 +59,12 @@ public class FileHandler {
             }
         }while (lastInteger != endOfLine);
         return Clause;
+    }
+    public ArrayList<Integer>[] ListOfClauses(){
+        for( int i = 0;i<nbClause;i++){
+            ListofClauses[i] = NextClause();
+        }
+        return ListofClauses;
     }
 
 

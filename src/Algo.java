@@ -10,22 +10,13 @@ public class Algo {
 
 
     public static void main(String[] args) throws FileNotFoundException {
-        File fileName = new File("./src/formule-2-sat.txt");
-        int nbClause;
-        List<Integer> Clause;
-        ArrayList<Integer>[] test = new ArrayList[4];
-        FileHandler myscan = new FileHandler(fileName);
-        myscan.maxValue = myscan.Nextint();
-        nbClause = myscan.Nextint();
+        FileHandler myscan = new FileHandler(new File("./src/formule-2-sat.txt"));
         Graph graph = new Graph(2*myscan.maxValue);
+        PointHandler.init();
 
-        for( int i = 0;i<nbClause;i++){
-            test[i] = myscan.NextClause();
-        }
-
-        for(PointHandler point : PointHandler.CreateListOfPointFromClause(test)){
-            System.out.println("x= "+point.x+" y = "+point.y);
-        }
+        PointHandler.PrintListOfPoints();
+        System.out.println("-----------------");
+        PointHandler.PrintListOfTranspositionPoints();
 
     }
 
