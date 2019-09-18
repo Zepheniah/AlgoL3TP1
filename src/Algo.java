@@ -14,7 +14,7 @@ public class Algo {
         FileHandler myscan = new FileHandler(fileName);
         myscan.maxValue = myscan.Nextint();
         Graph graph = new Graph(2*myscan.maxValue);
-        nbClause = myscan.Nextint();
+        nbClause = myscan.Nextint();//
 
     }
 
