@@ -23,7 +23,7 @@ public class Algo {
             test[i] = myscan.NextClause();
         }
 
-        for(Point point : myscan.CreateListOfPointFromClause(test)){
+        for(PointHandler point : PointHandler.CreateListOfPointFromClause(test)){
             System.out.println("x= "+point.x+" y = "+point.y);
         }
 

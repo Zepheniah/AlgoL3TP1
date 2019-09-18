@@ -10,7 +10,7 @@ import static java.lang.Math.abs;
 
 public class FileHandler {
     protected Scanner sc;
-    protected int endOfLine = 0;
+    protected static int endOfLine = 0;
     public int maxValue;
 
 
@@ -30,7 +30,7 @@ public class FileHandler {
         return sc.nextInt();
     }
 
-    ArrayList<Integer> NextClause(){
+     public ArrayList<Integer> NextClause(){
         ArrayList<Integer> Clause = new ArrayList<>();
         int lastInteger;
         do{
@@ -42,17 +42,6 @@ public class FileHandler {
         return Clause;
     }
 
-    ArrayList<Point> CreateListOfPointFromClause(ArrayList<Integer>[] ListOfClause) {
-        int x = 0;
-        int y = 0;
-        List<Point> ListOfPoints = new ArrayList<>();
-        for (int i = 0; i < ListOfClause.length; i++) {
-            x = (int) ListOfClause[i].get(0);
-            y = (int) ListOfClause[i].get(1);
-            ListOfPoints.add(new Point(-x, y));
-            ListOfPoints.add(new Point(-y, x));
-        }
-        return (ArrayList<Point>) ListOfPoints;
-    }
+
 
 }
