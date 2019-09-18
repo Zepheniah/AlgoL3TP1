@@ -37,15 +37,18 @@ public class Graph<Label> {
         incidency.get(source).addLast(new Edge(source,dest,label));
     }
 
+    @Override
     public String toString() {
         String result = new String("");
         result.concat(cardinal + "\n");
+        System.out.println(result);
         for (int i = 0; i<cardinal;i++) {
             for (Edge e : incidency.get(i)) {
                 result.concat(e.source + " " + e.destination + " "
                         + e.label.toString() + "\n");
             }
         }
+        System.out.println(result);
         return result;
 
     }

@@ -16,8 +16,6 @@ public class FileHandler {
 
     protected static ArrayList<Integer>[] ListofClauses;
 
-
-
     public FileHandler(File fileName){
         try {
             sc = new Scanner(fileName);
@@ -46,10 +44,18 @@ public class FileHandler {
         while(!sc.hasNextInt()){
            sc.next();
         }
-        return sc.nextInt();
+        int entier = sc.nextInt();
+        if(entier<0)entier = abs(entier) + getMaxValue();
+        return entier;
     }
 
-     public ArrayList<Integer> NextClause(){
+    public static int Stantardize(int x){
+        if( x<0 && abs(x)>FileHandler.getMaxValue()) x = abs(x) - FileHandler.getMaxValue();
+        if( abs(x) <= getMaxValue() && x<0 ) x = abs(x) + getMaxValue();
+        return x;
+    }
+
+    public ArrayList<Integer> NextClause(){
         ArrayList<Integer> Clause = new ArrayList<>();
         int lastInteger;
         do{

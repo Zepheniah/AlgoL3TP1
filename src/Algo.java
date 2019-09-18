@@ -11,12 +11,15 @@ public class Algo {
 
     public static void main(String[] args) throws FileNotFoundException {
         FileHandler myscan = new FileHandler(new File("./src/formule-2-sat.txt"));
-        Graph graph = new Graph(2*myscan.maxValue);
         PointHandler.init();
+        GraphHandler graph = new GraphHandler( new Graph(2*myscan.maxValue),false);
 
+        /*
         PointHandler.PrintListOfPoints();
         System.out.println("-----------------");
         PointHandler.PrintListOfTranspositionPoints();
+        System.out.println("-----------------");
+        */
 
     }
 

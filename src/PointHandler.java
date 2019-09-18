@@ -2,12 +2,18 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.abs;
+
 public class PointHandler {
 
     public int x;
     public int y;
     private static ArrayList<PointHandler> ListOfPoints;
     private static ArrayList<PointHandler> ListOfTranspositionPoints;
+
+    public static ArrayList<PointHandler> getListOfTranspositionPoints() {
+        return ListOfTranspositionPoints;
+    }
 
     public static ArrayList<PointHandler> getListOfPoints() {
         return ListOfPoints;
@@ -36,8 +42,8 @@ public class PointHandler {
         for (int i = 0; i < ListOfClause.length; i++) {
             x = (int) ListOfClause[i].get(0);
             y = (int) ListOfClause[i].get(1);
-            TempListOfPoints.add(new PointHandler(-x, y));
-            TempListOfPoints.add(new PointHandler(-y, x));
+            TempListOfPoints.add(new PointHandler(FileHandler.Stantardize(-x), FileHandler.Stantardize(y)));
+            TempListOfPoints.add(new PointHandler(FileHandler.Stantardize(-y), FileHandler.Stantardize(x)));
         }
         ListOfPoints = (ArrayList<PointHandler>)((ArrayList<PointHandler>) TempListOfPoints).clone();
         return ListOfPoints;
