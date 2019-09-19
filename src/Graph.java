@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class Graph<Label> {
 
-    private class Edge {
+    public class Edge {
         public int source;
         public int destination;
         public Label label;
@@ -18,6 +18,11 @@ public class Graph<Label> {
     }
 
     private int cardinal;
+
+    public ArrayList<LinkedList<Edge>> getIncidency() {
+        return incidency;
+    }
+
     private ArrayList<LinkedList<Edge>> incidency;
 
 
