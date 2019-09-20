@@ -1,12 +1,15 @@
 import com.company.Graph;
 
 import java.io.Console;
+import java.util.Stack;
 
 
 public class GraphHandler {
      private Graph<Integer> graph;
+     private Graph<Integer> tgraph;
      private boolean transposition;
      int time;
+     Stack<Integer> Date = new Stack<>();
 
     boolean[] visited;
     int[] StartTime;
@@ -23,9 +26,10 @@ public class GraphHandler {
          graph.toString();
      }
 
-     public static GraphHandler TransposedGraph(){
+     public GraphHandler TransposedGraph(){
         Graph<Integer> TempGraph = new Graph(FileHandler.getMaxValue()*2);
         GraphHandler TGraph = new GraphHandler(TempGraph,true);
+        tgraph = TGraph.getGraph();
         return TGraph;
      }
 
@@ -49,7 +53,7 @@ public class GraphHandler {
      private void FillGraphFromListOfTranspositionPoint(){
         int i = 0;
         for (PointHandler point : PointHandler.getListOfTranspositionPoints()){
-            System.out.println("point.x "+(point.x-1)+" point.y "+(point.y-1));
+           // System.out.println("point.x "+(point.x-1)+" point.y "+(point.y-1));
             graph.addArc(point.x-1,point.y-1,i);
             i++;
         }
@@ -75,21 +79,54 @@ public class GraphHandler {
          for(int i = 0;i<graph.order();i++){
             if(visited[i]==false)visite(i);
          }
+         System.out.println(Date.toString());
      }
 
      private void visite(int actualS){
         StartTime[actualS] = time;
         visited[actualS] = true;
         time++;
-         System.out.println(actualS);
+         //System.out.println(actualS);
         for(Graph.Edge e : graph.getIncidency().get(actualS)){
 
             if(visited[e.destination]==false)visite(e.destination);
 
         }
-
+        Date.push(actualS);
+         //System.out.println(" ");
         EndTime[actualS] = time;
         time++;
+     }
+
+     public void TestKosaraju(){
+        GraphHandler Tgraph = this.TransposedGraph();
+         for(int i = 0;i<tgraph.order();i++){
+             visited[i] = false;
+         }
+         while(!Date.isEmpty()){
+
+             if(visited[Date.peek()]==false && Date.peek() !=null) {
+                 int i = Date.pop();
+                 Testvisite(i,tgraph);
+
+             }
+
+             System.out.println("-----------------------------------------");
+         }
+     }
+
+     private void Testvisite(int actualS,Graph graph){
+         visited[actualS] =true;
+         System.out.println(actualS);
+         for(Graph.Edge e : tgraph.getIncidency().get(actualS)){
+
+             if(visited[e.destination] == false){
+                 Testvisite(e.destination,graph);
+             }
+
+         }
+         if(Date.contains(actualS))Date.removeElement(actualS);
+
      }
 
 

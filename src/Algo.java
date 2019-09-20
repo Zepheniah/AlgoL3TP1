@@ -14,11 +14,10 @@ public class Algo {
         PointHandler.init();
 
         GraphHandler graph = new GraphHandler( new Graph(2*myscan.maxValue),false);
-        graph.printEdge();
-        //graph.DFS();
+        //graph.printEdge();
+        graph.DFS();
+        graph.TestKosaraju();
 
-        //GraphHandler tgraph = GraphHandler.TransposedGraph();
-        //tgraph.DFS();
 
 /*
         PointHandler.PrintListOfPoints();
