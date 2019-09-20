@@ -7,13 +7,12 @@ import java.util.Stack;
 public class GraphHandler {
      private Graph<Integer> graph;
      private Graph<Integer> tgraph;
-     private boolean transposition;
-     int time;
-     Stack<Integer> Date = new Stack<>();
 
-    boolean[] visited;
-    int[] StartTime;
-    int[] EndTime;
+     private boolean[] visited;
+
+     private Stack<Integer> Date = new Stack<>();
+
+
 
     public GraphHandler(Graph graph,boolean transposition){
          this.graph = graph;
@@ -35,10 +34,6 @@ public class GraphHandler {
 
     public Graph<Integer> getGraph() {
         return graph;
-    }
-
-    public boolean isTransposition() {
-        return transposition;
     }
 
     private void FillGraphFromListOfPoint(){
@@ -68,11 +63,7 @@ public class GraphHandler {
      }
 
      public void DFS(){
-         int time = 1;
          visited = new boolean[graph.order()];
-         EndTime = new int[graph.order()];
-         StartTime = new int[graph.order()];
-
          for(int i = 0;i<graph.order();i++){
             visited[i] = false;
          }
@@ -83,19 +74,11 @@ public class GraphHandler {
      }
 
      private void visite(int actualS){
-        StartTime[actualS] = time;
         visited[actualS] = true;
-        time++;
-         //System.out.println(actualS);
         for(Graph.Edge e : graph.getIncidency().get(actualS)){
-
             if(visited[e.destination]==false)visite(e.destination);
-
         }
         Date.push(actualS);
-         //System.out.println(" ");
-        EndTime[actualS] = time;
-        time++;
      }
 
      public void TestKosaraju(){
