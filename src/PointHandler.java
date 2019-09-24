@@ -28,13 +28,16 @@ public class PointHandler {
         PointHandler.CreateListOfTranspostionPoint(PointHandler.getListOfPoints());
     }
 
-     protected static PointHandler  permute(PointHandler point){
+     protected static PointHandler  permute(PointHandler point){ /*permute les coordonnées x et y du point donné en entrée*/
         int z,w;
         z = point.x;
         w = point.y;
         return new PointHandler(w,z);
     }
-
+    /*
+    Prends en entrée une liste de clause
+    renvoie une liste de point avec x: la source d'un arc et y: sa destination
+     */
     public static ArrayList<PointHandler> CreateListOfPointFromClause(ArrayList<Integer>[] ListOfClause) {
         int x = 0;
         int y = 0;
@@ -48,7 +51,10 @@ public class PointHandler {
         ListOfPoints = (ArrayList<PointHandler>)((ArrayList<PointHandler>) TempListOfPoints).clone();
         return ListOfPoints;
     }
-
+    /*
+    Prends en entrée une liste de point
+    renvoie cette liste de point avec toute les coordonnées x et y permuter
+    */
     public  static ArrayList<PointHandler> CreateListOfTranspostionPoint(ArrayList<PointHandler> ListOfPoint){
         List<PointHandler> TempListOfTranspositionPoints = new ArrayList<>();
         for(PointHandler point : ListOfPoint){
@@ -58,13 +64,13 @@ public class PointHandler {
         return ListOfTranspositionPoints;
     }
 
-    public static void PrintListOfPoints(){
+    public static void PrintListOfPoints(){/*affiche ListOfPoints dans la console*/
         for(PointHandler point : ListOfPoints){
             System.out.println("x= "+point.x+" y = "+point.y);
         }
     }
 
-    public static void PrintListOfTranspositionPoints(){
+    public static void PrintListOfTranspositionPoints(){/*affiche ListOfTranspositionPoints dans la console*/
         for(PointHandler point : ListOfTranspositionPoints){
             System.out.println("x= "+point.x+" y = "+point.y);
         }

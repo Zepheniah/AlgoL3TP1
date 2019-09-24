@@ -36,7 +36,7 @@ public class GraphHandler {
         return graph;
     }
 
-    private void FillGraphFromListOfPoint(){
+    private void FillGraphFromListOfPoint(){/*permet de créer tout les♥arc d'un graphe à♥partir d'une liste de points*/
         int i = 0;
 
         for(PointHandler point : PointHandler.getListOfPoints()){
@@ -45,7 +45,7 @@ public class GraphHandler {
         }
 
      }
-     private void FillGraphFromListOfTranspositionPoint(){
+     private void FillGraphFromListOfTranspositionPoint(){/*permet de créer tout les♥arc d'un graphe à♥partir d'une liste de points dont les coordonné on été permuté*/
         int i = 0;
         for (PointHandler point : PointHandler.getListOfTranspositionPoints()){
            // System.out.println("point.x "+(point.x-1)+" point.y "+(point.y-1));
@@ -54,7 +54,7 @@ public class GraphHandler {
         }
      }
 
-     public void printEdge(){
+     public void printEdge(){ /*permet d'afficher un arc dans la console*/
          for (int i = 0; i<graph.order();i++) {
              for (Graph.Edge e  : graph.getIncidency().get(i)) {
                  System.out.println("From "+e.source + " to " + e.destination+ "Label "+ e.label );
@@ -62,7 +62,7 @@ public class GraphHandler {
          }
      }
 
-     public void DFS(){
+     public void DFS(){ /*effectue un parcours en profondeur sur le graphe*/
          visited = new boolean[graph.order()];
          for(int i = 0;i<graph.order();i++){
             visited[i] = false;

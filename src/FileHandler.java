@@ -40,7 +40,7 @@ public class FileHandler {
         return ListofClauses;
     }
 
-    int Nextint(){
+    int Nextint(){    /*renvoie le prochain entier du fichier*/
         while(!sc.hasNextInt()){
            sc.next();
         }
@@ -49,13 +49,13 @@ public class FileHandler {
         return entier;
     }
 
-    public static int Stantardize(int x){
+    public static int Stantardize(int x){ /*revoie un entier unique en fonction de l'entier en entrée*/
         if( x<0 && abs(x)>FileHandler.getMaxValue()) x = abs(x) - FileHandler.getMaxValue();
         if( abs(x) <= getMaxValue() && x<0 ) x = abs(x) + getMaxValue();
         return x;
     }
 
-    public ArrayList<Integer> NextClause(){
+    public ArrayList<Integer> NextClause(){/*renvoie une clause extraite du fichier*/
         ArrayList<Integer> Clause = new ArrayList<>();
         int lastInteger;
         do{
@@ -66,7 +66,7 @@ public class FileHandler {
         }while (lastInteger != endOfLine);
         return Clause;
     }
-    public ArrayList<Integer>[] ListOfClauses(){
+    public ArrayList<Integer>[] ListOfClauses(){ /*renvoie un tableau de toutes les clauses du fichier*/
         for( int i = 0;i<nbClause;i++){
             ListofClauses[i] = NextClause();
         }
