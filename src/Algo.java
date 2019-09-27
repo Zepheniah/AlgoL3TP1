@@ -17,6 +17,7 @@ public class Algo {
         //graph.printEdge();
         graph.DFS();
         graph.TestKosaraju();
+        graph.Check2SATProblem();
 
 
 /*

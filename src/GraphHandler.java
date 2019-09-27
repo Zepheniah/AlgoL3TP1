@@ -1,6 +1,7 @@
 import com.company.Graph;
 
 import java.io.Console;
+import java.util.ArrayList;
 import java.util.Stack;
 
 
@@ -11,6 +12,9 @@ public class GraphHandler {
      private boolean[] visited;
 
      private Stack<Integer> Date = new Stack<>();
+    private ArrayList<Integer> ComposanteConnexe = new ArrayList<>();
+    private ArrayList<ArrayList<Integer>> ListofComposanteConnexe = new ArrayList<>();
+
 
 
 
@@ -93,14 +97,17 @@ public class GraphHandler {
                  Testvisite(i,tgraph);
 
              }
-
+             CreateListOfComposanteConnexe(ComposanteConnexe);
              System.out.println("-----------------------------------------");
          }
+
+
      }
 
      private void Testvisite(int actualS,Graph graph){
          visited[actualS] =true;
          System.out.println(actualS);
+         ComposanteConnexe.add(actualS);
          for(Graph.Edge e : tgraph.getIncidency().get(actualS)){
 
              if(visited[e.destination] == false){
@@ -109,6 +116,29 @@ public class GraphHandler {
 
          }
          if(Date.contains(actualS))Date.removeElement(actualS);
+
+     }
+
+     private void CreateListOfComposanteConnexe(ArrayList<Integer> arrayList){
+        ArrayList<Integer> temp = (ArrayList<Integer>) arrayList.clone();
+        ListofComposanteConnexe.add(temp);
+        ComposanteConnexe.clear();
+     }
+
+     public void Check2SATProblem(){
+        if(ListofComposanteConnexe.isEmpty()){
+            System.out.println("List of Component is empty,make sure you used TestKoraju()");
+            System.exit(-2);
+        }
+         for(ArrayList<Integer> a : ListofComposanteConnexe) {
+             for(int i = 0;i<FileHandler.getMaxValue();i++){
+                 if (a.contains(i)&& a.contains(i+FileHandler.getMaxValue())){
+                     System.out.println("It's not 2SAT satisfiable");
+                     System.exit(0);
+                 }
+             }
+             System.out.println("It's 2SAT satisfiable");
+         }
 
      }
 
