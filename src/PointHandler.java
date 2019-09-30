@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.abs;
-
+/// Class used to generate,group or process Point related things
 public class PointHandler {
 
     public int x;
@@ -27,17 +27,19 @@ public class PointHandler {
         PointHandler.CreateListOfPointFromClause(FileHandler.ListofClauses);
         PointHandler.CreateListOfTranspostionPoint(PointHandler.getListOfPoints());
     }
-
-     protected static PointHandler  permute(PointHandler point){ /*permute les coordonnées x et y du point donné en entrée*/
+    /**permute x & y in the point in parameter and returns it
+     * @param point
+     * @return a new point with permuted coord**/
+     protected static PointHandler  permute(PointHandler point){
         int z,w;
         z = point.x;
         w = point.y;
         return new PointHandler(w,z);
     }
-    /*
-    Prends en entrée une liste de clause
-    renvoie une liste de point avec x: la source d'un arc et y: sa destination
-     */
+    /**
+    @param ListOfClause array of array list(all the clauses generated from the text file
+    @return ListOfPoints The list of point according to implication transformation
+     **/
     public static ArrayList<PointHandler> CreateListOfPointFromClause(ArrayList<Integer>[] ListOfClause) {
         int x = 0;
         int y = 0;
@@ -55,10 +57,10 @@ public class PointHandler {
         ListOfPoints = (ArrayList<PointHandler>)((ArrayList<PointHandler>) TempListOfPoints).clone();
         return ListOfPoints;
     }
-    /*
-    Prends en entrée une liste de point
-    renvoie cette liste de point avec toute les coordonnées x et y permuter
-    */
+    /**
+    @param ListOfPoint array list of point
+    @return ListOfTranspositionPoints An array list where all the point from the @param has been permuted
+    **/
     public  static ArrayList<PointHandler> CreateListOfTranspostionPoint(ArrayList<PointHandler> ListOfPoint){
         List<PointHandler> TempListOfTranspositionPoints = new ArrayList<>();
         for(PointHandler point : ListOfPoint){
@@ -67,14 +69,21 @@ public class PointHandler {
         ListOfTranspositionPoints = (ArrayList<PointHandler>)((ArrayList<PointHandler>) TempListOfTranspositionPoints).clone();
         return ListOfTranspositionPoints;
     }
-
-    public static void PrintListOfPoints(){/*affiche ListOfPoints dans la console*/
+/**
+    Print all the points from the attribute list of points
+ **/
+    public static void PrintListOfPoints(){
+        if(ListOfPoints.isEmpty()){
+            System.out.println("Empty List");
+        }
         for(PointHandler point : ListOfPoints){
             System.out.println("x= "+point.x+" y = "+point.y);
         }
     }
-
-    public static void PrintListOfTranspositionPoints(){/*affiche ListOfTranspositionPoints dans la console*/
+    /**
+     Print all the points from the attribute ListOftranspositionPoints
+      **/
+    public static void PrintListOfTranspositionPoints(){
         for(PointHandler point : ListOfTranspositionPoints){
             System.out.println("x= "+point.x+" y = "+point.y);
         }

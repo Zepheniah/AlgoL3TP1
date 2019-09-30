@@ -40,7 +40,12 @@ public class FileHandler {
         return ListofClauses;
     }
 
-    int Nextint(){    /*renvoie le prochain entier du fichier*/
+    /**
+     * find the next Integer in the text file and returns it
+     * if it's negative,it's processed
+     * @return entier Next Integer in the text file
+     */
+    int Nextint(){
         while(!sc.hasNextInt()){
            sc.next();
         }
@@ -49,13 +54,22 @@ public class FileHandler {
         return entier;
     }
 
+    /**
+     *
+     * @param x Integer that may need to be processed to works with the upcoming methods & graph
+     * @return x the processed Integer
+     */
     public static int Stantardize(int x){ /*revoie un entier unique en fonction de l'entier en entrée*/
         if( x<0 && abs(x)>FileHandler.getMaxValue()) x = abs(x) - FileHandler.getMaxValue();
         if( abs(x) <= getMaxValue() && x<0 ) x = abs(x) + getMaxValue();
         return x;
     }
 
-    public ArrayList<Integer> NextClause(){/*renvoie une clause extraite du fichier*/
+    /**
+     * Find the next Clause in the text file delimited by 0
+     * @return Clause in the form of a list
+     */
+    public ArrayList<Integer> NextClause(){
         ArrayList<Integer> Clause = new ArrayList<>();
         int lastInteger;
         do{
@@ -66,6 +80,11 @@ public class FileHandler {
         }while (lastInteger != endOfLine);
         return Clause;
     }
+
+    /**
+     * Stock every clause found in NextClause() in an array
+     * @return ListOfClauses all the clause in the textfile grouped in an array
+     */
     public ArrayList<Integer>[] ListOfClauses(){ /*renvoie un tableau de toutes les clauses du fichier*/
         for( int i = 0;i<nbClause;i++){
             ListofClauses[i] = NextClause();
