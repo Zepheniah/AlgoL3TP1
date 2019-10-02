@@ -10,14 +10,26 @@ public class Algo {
 
 
     public static void main(String[] args) throws FileNotFoundException {
-        FileHandler myscan = new FileHandler(new File("./src/formule-2-sat.txt"));
+        FileHandler myscan = new FileHandler(new File("./src/unsat10000d"));
         PointHandler.init();
+        Chrono chrono = new Chrono();
 
         GraphHandler graph = new GraphHandler( new Graph(2*myscan.maxValue),false);
         //graph.printEdge();
+        chrono.start();
         graph.DFS();
+
+
+
         graph.TestKosaraju();
+
+
+
         graph.Check2SATProblem();
+
+        chrono.stop();
+        System.out.println(chrono.getElapsedTime());
+        chrono.restart();
 
 
 /*

@@ -45,10 +45,12 @@ public class PointHandler {
         int y = 0;
         List<PointHandler> TempListOfPoints = new ArrayList<>();
         for (int i = 0; i < ListOfClause.length; i++) {
+
             if(ListOfClause[i].size()> 2){
                 System.out.println("Not binary clauses");
                 System.exit(-3);
             }
+
             x = (int) ListOfClause[i].get(0);
             y = (int) ListOfClause[i].get(1);
             TempListOfPoints.add(new PointHandler(FileHandler.Stantardize(-x), FileHandler.Stantardize(y)));

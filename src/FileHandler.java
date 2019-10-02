@@ -74,9 +74,9 @@ public class FileHandler {
         int lastInteger;
         do{
             lastInteger = Nextint();
-            if(lastInteger != endOfLine ){
-                Clause.add(lastInteger);
-            }
+           if(lastInteger != endOfLine ){
+            Clause.add(lastInteger);
+           }
         }while (lastInteger != endOfLine);
         return Clause;
     }

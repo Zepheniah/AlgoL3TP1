@@ -9,7 +9,10 @@ public class GraphHandler {
      private Graph<Integer> graph;
      private Graph<Integer> tgraph;
 
+     private int[] composante;
+
      private boolean[] visited;
+     private Chrono chrono = new Chrono();
 
      private Stack<Integer> Date = new Stack<>();
     private ArrayList<Integer> ComposanteConnexe = new ArrayList<>();
@@ -77,7 +80,7 @@ public class GraphHandler {
          for(int i = 0;i<graph.order();i++){ //Go through every node and check if it has been visited if not call the function visite with the node as parameter
             if(visited[i]==false)visite(i);
          }
-         System.out.println(Date.toString()); // print all of the stack ,useful to know the order in which the node has been processed
+        // System.out.println(Date.toString()); // print all of the stack ,useful to know the order in which the node has been processed
      }
 
      private void visite(int actualS){ //Secondary method in the DFS algorithm ,used as recursiv method
@@ -94,36 +97,52 @@ public class GraphHandler {
             System.out.println("DFS has not been called or failed");
             System.exit(-3);
         }
+        chrono.start();
         GraphHandler Tgraph = this.TransposedGraph();
+        chrono.stop();
+         System.out.println("Transposé"+chrono.getElapsedTime());
+        composante = new int[tgraph.order()];
          for(int i = 0;i<tgraph.order();i++){
              visited[i] = false;
+             composante[i] = -1;
          }
+         int compo = 0;
+         chrono.restart();
          while(!Date.isEmpty()){
 
-             if(visited[Date.peek()]==false && Date.peek() !=null) {
+             //if(visited[Date.peek()]==false && Date.peek() !=null) {
                  int i = Date.pop();
-                 Testvisite(i,tgraph);
+                 if(visited[i]==false){
+                 Testvisite(i,compo);
+                 compo++;
 
              }
-             CreateListOfComposanteConnexe(ComposanteConnexe);
-             System.out.println("-----------------------------------------");
+
+
+
+
+             //CreateListOfComposanteConnexe(ComposanteConnexe);
+             //System.out.println("-----------------------------------------");
          }
+         chrono.stop();
+         System.out.println("Pile"+chrono.getElapsedTime());
 
 
      }
 
-     private void Testvisite(int actualS,Graph graph){
+     private void Testvisite(int actualS,int compo){
          visited[actualS] =true;
-         System.out.println(actualS);
-         ComposanteConnexe.add(actualS);
+         //System.out.println(actualS);
+         //ComposanteConnexe.add(actualS);
+         composante[actualS] = compo;
          for(Graph.Edge e : tgraph.getIncidency().get(actualS)){
 
              if(visited[e.destination] == false){
-                 Testvisite(e.destination,graph);
+                 Testvisite(e.destination,compo);
              }
 
          }
-         if(Date.contains(actualS))Date.removeElement(actualS);
+         //if(Date.contains(actualS))Date.removeElement(actualS);
 
      }
 
@@ -134,6 +153,7 @@ public class GraphHandler {
      }
 
      public void Check2SATProblem() {
+        /*
          if (ListofComposanteConnexe.isEmpty()) {
              System.out.println("List of Component is empty,make sure you used TestKoraju()");
              System.exit(-2);
@@ -145,8 +165,18 @@ public class GraphHandler {
                      System.exit(0);
                  }
              }
-             System.out.println("It's 2SAT satisfiable ");
+
          }
+
+         */
+        for(int i = 0;i<graph.order()/2;i++){
+            if(composante[i]==composante[i+FileHandler.getMaxValue()]){
+                System.out.println("It's not 2SAT satisfiable");
+                System.exit(0);
+            }
+        }
+         System.out.println("It's 2SAT satisfiable ");
+         //System.exit(0);
      }
 
 
