@@ -10,9 +10,10 @@ public class Algo {
 
 
     public static void main(String[] args) throws FileNotFoundException {
-        FileHandler myscan = new FileHandler(new File("./src/unsat10000d"));
-        PointHandler.init();
         Chrono chrono = new Chrono();
+
+        FileHandler myscan = new FileHandler(new File("./src/sat100000d"));
+        PointHandler.init();
 
         GraphHandler graph = new GraphHandler( new Graph(2*myscan.maxValue),false);
         //graph.printEdge();
@@ -28,7 +29,7 @@ public class Algo {
         graph.Check2SATProblem();
 
         chrono.stop();
-        System.out.println(chrono.getElapsedTime());
+        System.out.println("Temps des algo"+chrono.getElapsedTime());
         chrono.restart();
 
 
